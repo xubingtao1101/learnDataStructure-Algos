@@ -12,10 +12,12 @@ import os
 def disk_usage(path):
     """返回一个文件夹下所有文件（包括子文件夹）所占空间大小"""
     total = os.path.getsize(path)
-    if os.path.isdir(path):
+    if os.path.isdir(path): 
         for filename in os.listdir(path):
             childPath = os.path.join(path, filename)
             total += disk_usage(childPath)
+    # 第15行和第18行是递归关键
+    # 第17行用于拼接递归来的本层文件夹的路径和本层文件夹中的文件名，用于给第14行计算大小
     print(f"{total:<7}", path)
     return total
 
